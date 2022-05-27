@@ -283,17 +283,17 @@ def HUMANO_vez(comp_escolha, humano_escolha):
 
     movimento = -1
     movimentos = {
-        1: [lobo[0] + 1, lobo[1] + 1], 2: [lobo[0] + 1, lobo[1] - 1], 3: [lobo[0] - 1, lobo[1] - 1],
-        4: [lobo[0] - 1, lobo[1] + 1],
+        3: [lobo[0] + 1, lobo[1] + 1], 1: [lobo[0] + 1, lobo[1] - 1], 7: [lobo[0] - 1, lobo[1] - 1],
+        9: [lobo[0] - 1, lobo[1] + 1],
     }
     # mudar movimentos
     limpa_console()
     print('Vez do HUMANO [{}]'.format(humano_escolha))
     exibe_tabuleiro(tabuleiro, comp_escolha, humano_escolha)
 
-    while (movimento < 1 or movimento > 4):
+    while (testa_movimento(movimento)):
         try:
-            movimento = int(input('Use numero (1..4): '))
+            movimento = int(input('Use numero (1, 3, 7 ou 9): '))
             coord = movimentos[movimento]
             tenta_movimento = exec_movimentoLobo(coord[0], coord[1], HUMANO)
 
@@ -307,6 +307,18 @@ def HUMANO_vez(comp_escolha, humano_escolha):
             exit()
         except:
             print('Escolha Inválida!')
+""" ---------------------------------------------------------- """
+"""
+Funcao para testar teclas de opções de movimento do teclado
+"""
+def testa_movimento(movimento):
+	if(movimento == 1 or movimento == 3 or movimento == 7 or movimento == 9):
+		return 0
+	else:
+		return 1
+
+""" ---------------------------------------------------------- """
+
 
 def main():
     limpa_console()
